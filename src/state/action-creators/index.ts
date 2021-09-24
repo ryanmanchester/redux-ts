@@ -1,9 +1,10 @@
 import axios from 'axios';
+import { Dispatch } from 'redux';
 import { ActionType } from '../action-types';
 import { Action } from '../actions';
 
-const searchRepositories = (term: string) => {
-  return async (dispatch: any) => {
+export const searchRepositories = (term: string) => {
+  return async (dispatch: Dispatch<Action>) => {
     dispatch({
       type: ActionType.SEARCH_REPOSITORIES
     });
@@ -16,7 +17,7 @@ const searchRepositories = (term: string) => {
       const names = data.objects.map((result: any) => result.package.name)
       dispatch({
         type: ActionType.SEARCH_REPOSITORIES_SUCCESS,
-        payload: names 
+        payload: names
       })
     } catch (err: any) {
       dispatch ({
